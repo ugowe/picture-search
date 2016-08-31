@@ -17,7 +17,7 @@
 		A746A7641D75F31E0086FE48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A746A7621D75F31E0086FE48 /* LaunchScreen.storyboard */; };
 		A746A76F1D75F31F0086FE48 /* PictureSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746A76E1D75F31F0086FE48 /* PictureSearchTests.swift */; };
 		A746A77A1D75F31F0086FE48 /* PictureSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746A7791D75F31F0086FE48 /* PictureSearchUITests.swift */; };
-		A746A7881D760F8A0086FE48 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746A7871D760F8A0086FE48 /* PhotoViewController.swift */; };
+		A746A7881D760F8A0086FE48 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746A7871D760F8A0086FE48 /* PictureViewController.swift */; };
 		A7F913591D77139700A3962E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F913581D77139700A3962E /* Secrets.swift */; };
 		A7F9135B1D77434F00A3962E /* PictureSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9135A1D77434F00A3962E /* PictureSearcher.swift */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 		A746A7751D75F31F0086FE48 /* PictureSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictureSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A746A7791D75F31F0086FE48 /* PictureSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureSearchUITests.swift; sourceTree = "<group>"; };
 		A746A77B1D75F31F0086FE48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A746A7871D760F8A0086FE48 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		A746A7871D760F8A0086FE48 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		A7F913581D77139700A3962E /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A7F9135A1D77434F00A3962E /* PictureSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureSearcher.swift; sourceTree = "<group>"; };
 		BAAEF61E2DB495AB4BEC01BD /* Pods-PictureSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureSearchUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PictureSearchUITests/Pods-PictureSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			children = (
 				A746A7561D75F31E0086FE48 /* AppDelegate.swift */,
 				A746A75A1D75F31E0086FE48 /* Main.storyboard */,
-				A746A7871D760F8A0086FE48 /* PhotoViewController.swift */,
+				A746A7871D760F8A0086FE48 /* PictureViewController.swift */,
 				A746A7601D75F31E0086FE48 /* Assets.xcassets */,
 				A7F9135A1D77434F00A3962E /* PictureSearcher.swift */,
 				A746A7621D75F31E0086FE48 /* LaunchScreen.storyboard */,
@@ -440,7 +440,7 @@
 				A7F9135B1D77434F00A3962E /* PictureSearcher.swift in Sources */,
 				A7F913591D77139700A3962E /* Secrets.swift in Sources */,
 				A746A7571D75F31E0086FE48 /* AppDelegate.swift in Sources */,
-				A746A7881D760F8A0086FE48 /* PhotoViewController.swift in Sources */,
+				A746A7881D760F8A0086FE48 /* PictureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Photo View Controller-->
+        <!--Picture View Controller-->
         <scene sceneID="MFu-as-SjQ">
             <objects>
-                <collectionViewController id="g5A-gi-HDX" customClass="PhotoViewController" customModule="PictureSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="g5A-gi-HDX" customClass="PictureViewController" customModule="PictureSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="1b2-2z-yzp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
