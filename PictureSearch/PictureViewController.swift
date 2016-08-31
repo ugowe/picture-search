@@ -21,6 +21,21 @@ class PictureViewController: UICollectionViewController {
         return picture
     }
     
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return searches.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return searches[section].searchResults.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) 
+        cell.backgroundColor = UIColor.orangeColor()
+        
+        return cell
+    }
+    
     
 }
 
@@ -62,3 +77,5 @@ extension PictureViewController : UITextFieldDelegate {
         return true
     }
 }
+
+

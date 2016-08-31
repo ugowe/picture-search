@@ -20,6 +20,7 @@
 		A746A7881D760F8A0086FE48 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746A7871D760F8A0086FE48 /* PictureViewController.swift */; };
 		A7F913591D77139700A3962E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F913581D77139700A3962E /* Secrets.swift */; };
 		A7F9135B1D77434F00A3962E /* PictureSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9135A1D77434F00A3962E /* PictureSearcher.swift */; };
+		A7F9135D1D77791000A3962E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9135C1D77791000A3962E /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		A746A7871D760F8A0086FE48 /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		A7F913581D77139700A3962E /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		A7F9135A1D77434F00A3962E /* PictureSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureSearcher.swift; sourceTree = "<group>"; };
+		A7F9135C1D77791000A3962E /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		BAAEF61E2DB495AB4BEC01BD /* Pods-PictureSearchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureSearchUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PictureSearchUITests/Pods-PictureSearchUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2C82F2036932167B6BB29A8 /* Pods_PictureSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictureSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCEA521AE9EAA9D60420218F /* Pods-PictureSearchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictureSearchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PictureSearchTests/Pods-PictureSearchTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -133,8 +135,9 @@
 				A746A7561D75F31E0086FE48 /* AppDelegate.swift */,
 				A746A75A1D75F31E0086FE48 /* Main.storyboard */,
 				A746A7871D760F8A0086FE48 /* PictureViewController.swift */,
-				A746A7601D75F31E0086FE48 /* Assets.xcassets */,
 				A7F9135A1D77434F00A3962E /* PictureSearcher.swift */,
+				A7F9135C1D77791000A3962E /* CollectionViewController.swift */,
+				A746A7601D75F31E0086FE48 /* Assets.xcassets */,
 				A746A7621D75F31E0086FE48 /* LaunchScreen.storyboard */,
 				A7F913581D77139700A3962E /* Secrets.swift */,
 				A746A7651D75F31E0086FE48 /* Info.plist */,
@@ -436,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F9135D1D77791000A3962E /* CollectionViewController.swift in Sources */,
 				A746A75F1D75F31E0086FE48 /* PictureSearch.xcdatamodeld in Sources */,
 				A7F9135B1D77434F00A3962E /* PictureSearcher.swift in Sources */,
 				A7F913591D77139700A3962E /* Secrets.swift in Sources */,
