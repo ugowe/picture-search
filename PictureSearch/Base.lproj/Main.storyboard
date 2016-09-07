@@ -27,19 +27,25 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-08-vTZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-08-vTZ">
+                                            <rect key="frame" x="13" y="13" width="174" height="174"/>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cUL-ZU-vg2">
+                                            <rect key="frame" x="82" y="81" width="37" height="37"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottomMargin" secondItem="cCD-08-vTZ" secondAttribute="bottom" constant="5" id="1ot-yU-QhZ"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="cCD-08-vTZ" secondAttribute="trailing" constant="5" id="28Z-H0-6nM"/>
+                                    <constraint firstItem="cUL-ZU-vg2" firstAttribute="centerX" secondItem="TAR-Hj-toC" secondAttribute="centerX" id="DeL-Lv-TFH"/>
                                     <constraint firstItem="cCD-08-vTZ" firstAttribute="leading" secondItem="TAR-Hj-toC" secondAttribute="leadingMargin" constant="5" id="FqH-nn-eed"/>
                                     <constraint firstItem="cCD-08-vTZ" firstAttribute="top" secondItem="TAR-Hj-toC" secondAttribute="topMargin" constant="5" id="Ttf-Vh-11b"/>
+                                    <constraint firstItem="cUL-ZU-vg2" firstAttribute="centerY" secondItem="TAR-Hj-toC" secondAttribute="centerY" id="Uu5-5t-oGn"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="cUL-ZU-vg2" id="ABl-2N-Uma"/>
                                     <outlet property="imageView" destination="cCD-08-vTZ" id="Wbb-nm-hs0"/>
                                 </connections>
                             </collectionViewCell>

@@ -42,22 +42,53 @@ class FlickrPhoto : Equatable {
     func loadLargeImageWithCompletion(completion: (flickrPhoto: FlickrPhoto) -> Void) {
         let loadSession = NSURLSession.sharedSession()
         let loadURL = flickrImageURL("b")
-        let loadRequest = NSURLRequest(URL: loadURL)
+        let loadRequest = NSMutableURLRequest(URL: loadURL)
         
         var loadedImage: UIImage?
         
+        //        let loadTask = loadSession.dataTaskWithRequest(loadRequest) { (data, response, error) in
+        //            do {
+        //                guard let data = data else {print("Data is nil"); return}
+        //                loadedImage = try (NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? UIImage)
+        //                self.largeImage = loadedImage
+        //                completion(flickrPhoto: self)
+        //            } catch {
+        //                print(error)
+        //            }
+        //        }
+        //        loadTask.resume()
+        
         let loadTask = loadSession.dataTaskWithRequest(loadRequest) { (data, response, error) in
-            do {
+                
+            
                 guard let data = data else {print("Data is nil"); return}
-                loadedImage = try (NSJSONSerialization.JSONObjectWithData(data, options: []) as? UIImage)
+                loadedImage = UIImage(data: data)
                 self.largeImage = loadedImage
                 completion(flickrPhoto: self)
-            } catch {
-                print(error)
-            }
+
+        }
+        loadTask.resume()
+        
+    }
+    
+    func sizeToFillWidthOfSize(size:CGSize) -> CGSize {
+        if thumbnail == nil {
+            return size
         }
         
-        loadTask.resume()
+        let imageSize = thumbnail!.size
+        var returnSize = size
+        
+        let aspectRatio = imageSize.width / imageSize.height
+        
+        returnSize.height = returnSize.width / aspectRatio
+        
+        if returnSize.height > size.height {
+            returnSize.height = size.height
+            returnSize.width = size.height * aspectRatio
+        }
+        
+        return returnSize
     }
     
 }
@@ -76,7 +107,7 @@ class Flickr {
     func flickrSearchURL(searchTerm: String) -> NSURL {
         let escapedSearchTerm = searchTerm.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         
-        let URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(Secrets.apiKey)&text=\(escapedSearchTerm!)&per_page=20&format=json&nojsoncallback=1"
+        let URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(Secrets.apiKey)&text=\(escapedSearchTerm!)&per_page=20&format=json&nojsoncallback=1.json"
         let searchTermURL = NSURL(string: URLString)!
         return searchTermURL
     }
@@ -87,7 +118,7 @@ class Flickr {
         
         let session = NSURLSession.sharedSession()
         let searchURL = flickrSearchURL(searchTerm)
-        let searchRequest = NSURLRequest(URL: searchURL)
+        let searchRequest = NSMutableURLRequest(URL: searchURL)
         let searchTask = session.dataTaskWithRequest(searchRequest) { (data, response, error) in
             do {
                 guard let data = data else {print("Unable to retrieve search data"); return}
@@ -98,8 +129,7 @@ class Flickr {
             
             let photosContainer = resultsDictionary!["photos"] as! NSDictionary
             
-            //
-            let photosRecieved = photosContainer["photo"] as! [NSDictionary]
+            let photosRecieved = photosContainer["photo"] as! NSArray
             
             let flickrPhotos : [FlickrPhoto] = photosRecieved.map {
                 photoDictionary in

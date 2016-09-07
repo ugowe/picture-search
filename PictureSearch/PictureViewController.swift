@@ -31,13 +31,40 @@ class PictureViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PictureCollectionViewCell
         
         let flickrPhoto = pictureForIndexPath(indexPath)
         
-        cell.backgroundColor = UIColor.orangeColor()
-        cell.imageView.image = flickrPhoto.thumbnail
+//        cell.activityIndicator.stopAnimating()
         
+        if indexPath != largePictureIndexPath {
+            cell.imageView.image = flickrPhoto.thumbnail
+            return cell
+        }
+        
+        if flickrPhoto.largeImage != nil {
+            cell.imageView.image = flickrPhoto.largeImage
+            return cell
+        }
+        
+        cell.imageView.image = flickrPhoto.thumbnail
+//        cell.activityIndicator.startAnimating()
+        
+        flickrPhoto.loadLargeImageWithCompletion { loadedFlickrPicture in
+            
+//            cell.activityIndicator.stopAnimating()
+            
+            if loadedFlickrPicture.largeImage == nil {
+                return
+            }
+            
+            if indexPath == self.largePictureIndexPath {
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? PictureCollectionViewCell {
+                    cell.imageView.image = loadedFlickrPicture.largeImage
+                }
+            }
+        }
         
         return cell
     }
@@ -54,8 +81,40 @@ class PictureViewController: UICollectionViewController {
         }
     }
     
+    var largePictureIndexPath: NSIndexPath? {
+        didSet {
+            var indexPaths = [NSIndexPath]()
+            if largePictureIndexPath != nil {
+                indexPaths.append(largePictureIndexPath!)
+            }
+            
+            if oldValue != nil {
+                indexPaths.append(oldValue!)
+            }
+            
+            collectionView?.performBatchUpdates({
+                self.collectionView?.reloadItemsAtIndexPaths(indexPaths)
+                return
+            }){ completed in
+                if self.largePictureIndexPath != nil {
+                    self.collectionView?.scrollToItemAtIndexPath(self.largePictureIndexPath!, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
+                }
+            }
+        }
+    }
     
+    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if largePictureIndexPath == indexPath {
+            largePictureIndexPath = nil
+        } else {
+            largePictureIndexPath = indexPath
+        }
+        return false
+        
+    }
 }
+
+
 
 extension PictureViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -67,20 +126,20 @@ extension PictureViewController : UITextFieldDelegate {
         flickr.searchFlickrForTerm(textField.text!) {
             results in
             
-//            //2
-//            activityIndicator.removeFromSuperview()
-//            if error != nil {
-//                print("Error searching : \(error)")
-//            }
-//            
-//            if results != nil {
-//                //3
-//                print("Found \(results!.searchResults.count) matching \(results!.searchTerm)")
-//                self.searches.insert(results!, atIndex: 0)
-//                
-//                //4
-//                self.collectionView?.reloadData()
-//            }
+            //            //2
+            //            activityIndicator.removeFromSuperview()
+            //            if error != nil {
+            //                print("Error searching : \(error)")
+            //            }
+            //
+            //            if results != nil {
+            //                //3
+            //                print("Found \(results!.searchResults.count) matching \(results!.searchTerm)")
+            //                self.searches.insert(results!, atIndex: 0)
+            //
+            //                //4
+            //                self.collectionView?.reloadData()
+            //            }
             activityIndicator.removeFromSuperview()
             guard let results = results else {print("Error searching: "); return}
             print("Found \(results.searchResults.count) results matching search term '\(results.searchTerm)'")
@@ -102,6 +161,14 @@ extension PictureViewController: UICollectionViewDelegateFlowLayout {
         
         let flickrPhoto = pictureForIndexPath(indexPath)
         
+        if indexPath == largePictureIndexPath {
+            var size = collectionView.bounds.size
+            size.height -= topLayoutGuide.length
+            size.height -= (sectionInsets.top + sectionInsets.right)
+            size.width -= (sectionInsets.left + sectionInsets.right)
+            return flickrPhoto.sizeToFillWidthOfSize(size)
+        }
+        
         if var size = flickrPhoto.thumbnail?.size {
             size.width += 10
             size.height += 10
@@ -109,7 +176,7 @@ extension PictureViewController: UICollectionViewDelegateFlowLayout {
         }
         return CGSize(width: 35, height: 35)
         
-        }
+    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
