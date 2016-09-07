@@ -16,6 +16,7 @@ class PictureViewController: UICollectionViewController {
     private var searches = [PictureSearchResults]()
     private let flickr = Flickr()
     
+    // pictureForIndexPath is a convenience method that gets a specific photo related to an index path in this collection view
     func pictureForIndexPath(indexPath: NSIndexPath) -> FlickrPhoto {
         let picture = searches[indexPath.section].searchResults[indexPath.row]
         return picture
@@ -30,10 +31,27 @@ class PictureViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) 
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PictureCollectionViewCell
+        
+        let flickrPhoto = pictureForIndexPath(indexPath)
+        
         cell.backgroundColor = UIColor.orangeColor()
+        cell.imageView.image = flickrPhoto.thumbnail
+        
         
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "PictureHeaderView", forIndexPath: indexPath) as! PictureHeaderView
+            headerView.label.text = searches[indexPath.section].searchTerm
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
     }
     
     
@@ -76,6 +94,28 @@ extension PictureViewController : UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+extension PictureViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let flickrPhoto = pictureForIndexPath(indexPath)
+        
+        if var size = flickrPhoto.thumbnail?.size {
+            size.width += 10
+            size.height += 10
+            return size
+        }
+        return CGSize(width: 35, height: 35)
+        
+        }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        
+        return sectionInsets
+    }
+    
 }
 
 

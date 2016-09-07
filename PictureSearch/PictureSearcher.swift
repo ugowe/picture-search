@@ -44,12 +44,12 @@ class FlickrPhoto : Equatable {
         let loadURL = flickrImageURL("b")
         let loadRequest = NSURLRequest(URL: loadURL)
         
-//        var loadedImage: UIImage?
+        var loadedImage: UIImage?
         
         let loadTask = loadSession.dataTaskWithRequest(loadRequest) { (data, response, error) in
             do {
                 guard let data = data else {print("Data is nil"); return}
-                let loadedImage = try (NSJSONSerialization.JSONObjectWithData(data, options: []) as? UIImage)
+                loadedImage = try (NSJSONSerialization.JSONObjectWithData(data, options: []) as? UIImage)
                 self.largeImage = loadedImage
                 completion(flickrPhoto: self)
             } catch {

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Picture View Controller-->
@@ -13,22 +14,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ufo-XF-LTg">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="itemSize" width="200" height="200"/>
+                            <size key="headerReferenceSize" width="50" height="90"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="TAR-Hj-toC">
-                                <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="TAR-Hj-toC" customClass="PictureCollectionViewCell" customModule="PictureSearch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="154" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCD-08-vTZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="cCD-08-vTZ" secondAttribute="bottom" constant="5" id="1ot-yU-QhZ"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="cCD-08-vTZ" secondAttribute="trailing" constant="5" id="28Z-H0-6nM"/>
+                                    <constraint firstItem="cCD-08-vTZ" firstAttribute="leading" secondItem="TAR-Hj-toC" secondAttribute="leadingMargin" constant="5" id="FqH-nn-eed"/>
+                                    <constraint firstItem="cCD-08-vTZ" firstAttribute="top" secondItem="TAR-Hj-toC" secondAttribute="topMargin" constant="5" id="Ttf-Vh-11b"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="cCD-08-vTZ" id="Wbb-nm-hs0"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PictureHeaderView" id="8DO-P1-0d4" customClass="PictureHeaderView" customModule="PictureSearch" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="600" height="90"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biN-1K-hRN">
+                                    <rect key="frame" x="261" y="26" width="78" height="39"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.3959396912" green="0.67428120869999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="biN-1K-hRN" firstAttribute="centerX" secondItem="8DO-P1-0d4" secondAttribute="centerX" id="7Wv-Bz-2yN"/>
+                                <constraint firstItem="biN-1K-hRN" firstAttribute="centerY" secondItem="8DO-P1-0d4" secondAttribute="centerY" id="mu4-Kk-xTn"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="label" destination="biN-1K-hRN" id="eo2-5D-Igx"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="g5A-gi-HDX" id="y9b-ZY-JuW"/>
                             <outlet property="delegate" destination="g5A-gi-HDX" id="QEt-T2-OWx"/>
